@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Repository } from '../model/Repository'
+import {Repository } from '../model/repository';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -13,18 +13,16 @@ export class DataService {
   getData() {
     try {
       return this.http.get(this._uri).map(res => res);
-    }
-    catch(e){
+    } catch (e) {
       console.log(e.message);
     }
   }
 
-  //Local Storage
+  // Local Storage
   static getTasks(storageName) {
     try {
       return JSON.parse(localStorage.getItem(storageName));
-    }
-    catch (e) {
+    } catch (e) {
       console.log(e.message);
     }
   }
@@ -32,38 +30,35 @@ export class DataService {
   static setTasks(storageName, value) {
     try {
       return  localStorage.setItem(storageName, JSON.stringify(value));
-    }
-    catch (e) {
+    } catch (e) {
       console.log(e.message);
     }
   }
-  // Helper to store data
+  // Helps confirming data to be stored
   static insertData (storageName, name, uri) {
     let holdFetchedDataTemp = [];
-    let toBeStored = new Repository();
+    const toBeStored = new Repository();
     toBeStored._name = name;
     toBeStored._uri = uri;
-    let dataAddress = localStorage.getItem(storageName);
-    if(dataAddress === null) {
+    const dataAddress = localStorage.getItem(storageName);
+    if (dataAddress === null) {
       holdFetchedDataTemp.push(toBeStored);
       this.setTasks(storageName, holdFetchedDataTemp);
       return true;
-    }
-    else {
-      try{
+    } else {
+      try {
         // Todo
         // Call update here and remove reputation
         holdFetchedDataTemp = this.getTasks(storageName);
         holdFetchedDataTemp.push(toBeStored);
         DataService.setTasks(storageName, holdFetchedDataTemp);
         return true;
-      }
-      catch (e) {
+      } catch (e) {
         console.log(e.message);
         return false;
       }
     }
-  };
+  }
 
   static updateTaks(storageName, toBeStored) {
     let holdFetchedDataTemp = [];

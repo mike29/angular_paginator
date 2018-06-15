@@ -4,28 +4,29 @@ import { Injectable } from '@angular/core';
 export class PaginateMakerService {
 
   public getPager(itemsLength: number, activePage: number = 1, itemsPerPage: number = 20) {
-    let startPage: number, endPage: number, indexOfStart:number =0, indexOfEnd:number=1;
+    let startPage: number, endPage: number;
+    const indexOfStart = 0, indexOfEnd = 1;
     // get required page quantity
-    let numberOfPages = Math.ceil(itemsLength / itemsPerPage);
+    const numberOfPages = Math.ceil(itemsLength / itemsPerPage);
 
-    //Get active page
+    // Get active page
     activePage = this.getActivePageRange(activePage, numberOfPages);
 
-    //Get the start and the end page. getStartEndPage() returns start and end
-    let startEndPage = this.getStartEndPage(numberOfPages);
+    // Get the start and the end page. getStartEndPage() returns start and end
+    const startEndPage = this.getStartEndPage(numberOfPages);
     startPage = startEndPage[indexOfStart];
     endPage = startEndPage[indexOfEnd];
 
     // calculate start and end item indexes of the viewItem
-    let startIndex = (activePage - 1) * itemsPerPage;
-    let endIndex = Math.min(startIndex + itemsPerPage - 1, itemsLength - 1);
+    const startIndex = (activePage - 1) * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage - 1, itemsLength - 1);
 
     // create an array of pages to ng-repeat in the pager control
-    let pages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
+    const pages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
 
     return {
-      totalItems: itemsLength, currentPage: activePage,pageSize: itemsPerPage,
-      totalPages: numberOfPages, startPage: startPage, endPage: endPage,startIndex: startIndex,
+      totalItems: itemsLength, currentPage: activePage, pageSize: itemsPerPage,
+      totalPages: numberOfPages, startPage: startPage, endPage: endPage, startIndex: startIndex,
       endIndex: endIndex, pages: pages
     };
   }
@@ -42,11 +43,12 @@ export class PaginateMakerService {
   }
 
   // Returns the start and the end page numbers
-  //TODO
+  // TODO
   // Aply a logic for more than 10 pages
   public getStartEndPage(allPages) {
     console.log('all' + allPages);
-    let startPage: number, endPage: number, startEndPageValues = [];
+    let startPage: number, endPage: number;
+    const startEndPageValues = [];
     if (allPages <= 10) {
       startPage = 1;
       endPage = allPages;

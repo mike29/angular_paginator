@@ -1,15 +1,16 @@
-//Angular
+// Angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app.routing.module';
-//Services
+// Services
 import { DataService} from './services/data.service';
 import { PaginateMakerService} from './services/paginate-maker.service';
-//Components
+// Components
 import { AppComponent } from './app.component';
 import { ReposComponent } from './components/repos/repos.component';
-//Requests
+// Requests
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpModule
   ],
   providers: [
     DataService,
