@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import { Repository } from '../../model/repository';
 import { DataService } from '../../services/data.service';
 import { PaginateMakerService } from '../../services/paginate-maker.service';
@@ -14,6 +14,7 @@ export class ReposComponent implements OnInit {
 
   paginateMakerService = new PaginateMakerService();
   private isFavorite;
+  private isOnline = true;
   private favoriteGitStorage = 'favoriteGit';
   private repos: any[];
   private isVisible = true;
@@ -25,27 +26,31 @@ export class ReposComponent implements OnInit {
   ngOnInit() {
     this.getData();
   }
-
   getData() {
     this.isVisible = true;
-    this.authService.getData()
-      .subscribe(data => {
-        try {
+    // Todo
+    // Check connection before request.Set timeinterval and retry if not connected.
+    // Give status feedback to users
+    if (this.isOnline) {
+      this.authService.getData()
+        .subscribe(data => {
+          try {
             this.repos = [...data.items];
             const repository = new Repository();
             /* Not really used the model here, but took it anyways just to show how I would manage
-            API's get requests */
+             API's get requests */
             for (const r of this.repos) {
               repository._id = r.id;
             }
-        } catch (e) {
-          console.log('if Err: webpack failed to compile . make any changes in the code and rerun ng serve. ');
-        }
-        if (this.repos.length) {
-          this.isVisible = false;
-        }
-        this.setPage(1);
-      });
+          } catch (e) {
+            console.log('if Err: webpack failed to compile . make any changes in the code and rerun ng serve. ');
+          }
+          if (this.repos.length) {
+            this.isVisible = false;
+          }
+          this.setPage(1);
+        });
+    }
   }
 
   setPage(activePage: number) {
