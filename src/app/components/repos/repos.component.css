@@ -1,0 +1,168 @@
+.repos {
+  color: #c9c9c9;
+  font: 14px/1.4 "Trebuchet MS", sans-serif;
+}
+a {
+  cursor: pointer;
+  color: #c9c9c9;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  background-color: #4CAF50;
+  font-size: 1em;
+  margin: 6px 5px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+}
+input {
+  border: none;
+}
+table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+th, td {
+  border: 1px solid #000000;
+  padding: 10px;
+}
+td {
+  background-color: #676767;
+}
+th {
+  text-align: center;
+  font-size: 1.4em;
+  background-color:#AF401A;
+}
+
+/* Search */
+.advancedSearch {
+  margin: 15px;
+  display: inline-block;
+}
+.advancedSearch button{
+  padding: 10px 32px;
+}
+.searchBox input{
+  width: 55%;
+  height: 60px;
+  border-radius: 5px 0 0 5px;
+  font-size: 2em;
+  background-color: #4c4c4c;
+  font-weight: bold;
+  max-lines: 1;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  color: #c9c9c9;
+}
+.searchBoxItem {
+  display: inline-flex;
+}
+.searchBox button{
+  font-size: 2em;
+  height: 60px;
+  padding: 7px 25px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 0 5px 5px 0;
+}
+/* Pagination */
+.fadeout {
+  -webkit-animation:fadeout 0.5s linear;
+  pointer-events: none;
+  opacity:0.4;
+}
+._pagination ul li {
+  font-size: 20px;
+  display: inline-block;
+  margin-right: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+._pagination ul li a {
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+}
+._pagination ul li.active {
+  -webkit-animation:fadein 0.5s linear;
+  background-color: #AF401A;
+  color: white;
+}
+._pagination ul li a:hover:not(.active) {
+  background-color: #af401a;
+  text-decoration: none;
+}
+/* Table */
+.id-box {
+  background-color: #545454;
+}
+.uri-box :hover{
+  background-color: #676767;
+  color: #ffffff;
+}
+.favorite {
+  font-size: 1.5em;
+}
+.favorite :hover {
+  cursor: pointer;
+}
+.favorite_icon_green{
+  color: #4CAF50;
+  -webkit-animation: ChangeColor 0.5s; /* Safari */
+  animation: ChangeColor 0.5s;
+}
+.favorite_icon_green :active{
+  color: #4CAF50;
+}
+/* Loading indicator */
+.loader {
+  position: fixed;
+  margin-top: 10%;
+  left: 50%;
+  border: 16px solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 16px solid #59b430;
+  -webkit-animation: spin 2s linear infinite;/* Safari */
+  animation: spin 2s linear infinite;
+}
+/* Safari */
+/* favorite */
+@-webkit-keyframes ChangeColor {
+  0%   {color: red; font-size: 1.0em}
+  50%  {color: yellow; font-size: 1.5em}
+  100%  {color: green; font-size: 1.0em}
+}
+
+@keyframes ChangeColor {
+  0%   {color: red; font-size: 1em}
+  50%  {color: yellow; font-size: 1.5em}
+  100%  {color: green; font-size: 1em}
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes fadein{
+  0%{opacity:0;visibility:visible;}
+  100%{opacity:1;}
+}
+@-webkit-keyframes fadeout{
+  0%{opacity:1;visibility:visible;}
+  99%{opacity:0.5;}
+  100%{opacity:0.4; }
+}

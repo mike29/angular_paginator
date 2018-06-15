@@ -1,0 +1,55 @@
+
+  <div class="repos">
+    <div ngClass="advancedSearch">
+      <button (click)="reverse()">Reverse</button>
+      <button (click)="sort()">A-Z</button>
+      <button (click)="mostPopular()">Popular first</button>
+      <button (click)="listPopular()">List popular</button>
+      <button (click)="showData()"><span class="glyphicon glyphicon-refresh"></span></button>
+    </div>
+    <div role="form" ngClass="searchBox form-group">
+      <input role="search" ngClass="searchBoxItem form-control" type="text">
+      <button ngClass="searchBoxItem" ><span class="glyphicon glyphicon-search"></span></button>
+    </div>
+    <div class="_pagination">
+      <ul *ngIf="pager.pages && pager.pages.length" class="_pagination">
+        <li>
+          <a [ngClass]="{fadeout:pager.currentPage === 1}" role="button" (click)="setPage(1)">&lang;&lang;</a>
+        </li>
+        <li [ngClass]="active" >
+          <a [ngClass]="{fadeout:pager.currentPage === 1}" role="button" (click)="setPage(pager.currentPage - 1)">&lang;</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+          <a role="button" (click)="setPage(page)">{{page}}</a>
+        </li>
+        <li>
+          <a [ngClass]="{fadeout:pager.currentPage === pager.totalPages}" role="button" (click)="setPage(pager.currentPage + 1)">&rang;</a>
+        </li>
+        <li>
+          <a [ngClass]="{fadeout:pager.currentPage === pager.totalPages}" (click)="setPage(pager.totalPages)">&rang;&rang;</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>URL</th>
+          <th>Has Issues</th>
+          <th>Stars</th>
+          <th>Favourite</th>
+        </tr>
+        <tr *ngFor="let repo of pagedItems" >
+            <td ngClass="'id-box'">{{repo?.id}}</td>
+            <td>{{repo?.name}}</td>
+            <td [ngClass]="'uri-box'"> <a href={{repo?.url}}>{{repo?.url}}</a> </td>
+            <td>{{repo?.has_issues.toString().charAt(0).toUpperCase()}}</td>
+            <td>{{repo?.stargazers_count}}</td>
+            <td class="favorite" (click)="addFavorite(repo,row)" > <span #row ngClass="glyphicon glyphicon-heart bounce" ></span></td>
+        </tr>
+      </table>
+      <div [hidden]="!isVisible" [ngClass]="'loader'"></div>
+  </div>
+  </div>
+
