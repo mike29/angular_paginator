@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PaginateMakerService {
-
-  public getPager(itemsLength: number, activePage: number = 1, itemsPerPage: number = 20) {
+  public getPagingMakers(itemsLength: number, activePage: number = 1, itemsPerPage: number = 20) {
     let startPage: number, endPage: number;
     const indexOfStart = 0, indexOfEnd = 1;
     // get required page quantity

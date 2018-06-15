@@ -50,7 +50,7 @@ export class ReposComponent implements OnInit {
 
   setPage(activePage: number) {
     // get pagination paging information
-    this.pager = this.paginateMakerService.getPager(this.repos.length, activePage);
+    this.pager = this.paginateMakerService.getPagingMakers(this.repos.length, activePage);
     // slice 20 from the array of repos and assign to the viewed items
     this.pagedItems = this.repos.slice(this.pager.startIndex, this.pager.endIndex + 1);
     console.log(this.pager.startIndex + ' : ' + this.pager.endIndex);

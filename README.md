@@ -1,7 +1,8 @@
-# PaginationDemo
+# Angular_Pagination
+Pagination that display top [100 github](https://api.github.com/search/repositories?q=language:javascript&sort=stars&order=desc&per_page=100)
+repositories <br>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
-
+View repositories using pagination, sort and add to favorite functionality.  
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

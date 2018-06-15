@@ -19,7 +19,7 @@ export class DataService {
   }
 
   // Local Storage
-  static getTasks(storageName) {
+  static getLocalRepos(storageName) {
     try {
       return JSON.parse(localStorage.getItem(storageName));
     } catch (e) {
@@ -27,7 +27,7 @@ export class DataService {
     }
   }
 
-  static setTasks(storageName, value) {
+  static setLocalRepos(storageName, value) {
     try {
       return  localStorage.setItem(storageName, JSON.stringify(value));
     } catch (e) {
@@ -43,15 +43,15 @@ export class DataService {
     const dataAddress = localStorage.getItem(storageName);
     if (dataAddress === null) {
       holdFetchedDataTemp.push(toBeStored);
-      this.setTasks(storageName, holdFetchedDataTemp);
+      this.setLocalRepos(storageName, holdFetchedDataTemp);
       return true;
     } else {
       try {
         // Todo
         // Call update here and remove reputation
-        holdFetchedDataTemp = this.getTasks(storageName);
+        holdFetchedDataTemp = this.getLocalRepos(storageName);
         holdFetchedDataTemp.push(toBeStored);
-        DataService.setTasks(storageName, holdFetchedDataTemp);
+        DataService.setLocalRepos(storageName, holdFetchedDataTemp);
         return true;
       } catch (e) {
         console.log(e.message);
@@ -59,13 +59,13 @@ export class DataService {
       }
     }
   }
-
-  static updateTaks(storageName, toBeStored) {
+  
+  static updateLocalRepos(storageName, toBeStored) {
     let holdFetchedDataTemp = [];
-    holdFetchedDataTemp = this.getTasks(storageName);
+    holdFetchedDataTemp = this.getLocalRepos(storageName);
     // TODO
     // Delete data that exists before updating
     holdFetchedDataTemp.push(toBeStored);
-    DataService.setTasks(storageName, holdFetchedDataTemp);
+    DataService.setLocalRepos(storageName, holdFetchedDataTemp);
   }
 }
